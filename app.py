@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from database import get_all_properties,init_db
+from database import fetch_properties,init_db
 
 app = Flask(__name__)
 
@@ -10,7 +10,7 @@ with app.app_context():
 @app.route("/")
 def home():
     name = "Nithyashree"
-    properties = get_all_properties()
+    properties = fetch_properties()
     return render_template('home.html',username=name,properties = properties)
 
 if __name__ == '__main__':
