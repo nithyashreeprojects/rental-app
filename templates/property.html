@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}{{ property["title"] }} — RentMatch{% endblock %}
+
+{% block content %}
+
+<div class="detail-wrap">
+
+    <a href="/listings" class="back-btn">← Back to listings</a>
+    <div class="detail-img">
+        <img src="https://plus.unsplash.com/premium_photo-1678963247798-0944cf6ba34d?q=80&w=1339&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="{{ property['title'] }}" />
+    </div>
+
+    <div class="detail-header">
+        <div>
+            <h1>{{ property["title"] }}</h1>
+            <p class="detail-area">{{ property["area"] }}, {{ property["city"] }}</p>
+        </div>
+        <div class="detail-price">
+            ₹{{ "{:,}".format(property["price"]) }}
+            <span>/month</span>
+        </div>
+    </div>
+
+    <div class="detail-grid">
+
+        <div class="detail-main">
+            <div class="detail-section">
+                <h2>About this property</h2>
+                <p>{{ property["description"] }}</p>
+            </div>
+
+            <div class="detail-section">
+                <h2>Details</h2>
+                <div class="detail-facts">
+                    <div class="fact">
+                        <span class="fact-label">Bedrooms</span>
+                        <span class="fact-value">{{ property["bedrooms"] }} BHK</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-label">Furnishing</span>
+                        <span class="fact-value">{{ property["furnishing_type"] }}</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-label">Available from</span>
+                        <span class="fact-value">{{ property["available_from"] }}</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-label">Gated community</span>
+                        <span class="fact-value">{{ "Yes" if property["is_gated_community"] else "No" }}</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-label">Parking</span>
+                        <span class="fact-value">{{ "Available" if property["has_parking"] else "Not available" }}</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-label">Lift</span>
+                        <span class="fact-value">{{ "Available" if property["has_lift"] else "Not available" }}</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-label">Pets allowed</span>
+                        <span class="fact-value">{{ "Yes" if property["pets_allowed"] else "No" }}</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-label">Maintenance</span>
+                        <span class="fact-value">{{ "Included" if property["maintenance_included"] else "Not included" }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-side">
+            <div class="contact-card">
+                <h2>Interested?</h2>
+                <p>Contact the owner to schedule a visit</p>
+                <button class="contact-btn">Contact Owner</button>
+                <a href="/match" class="match-link">Find similar properties →</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

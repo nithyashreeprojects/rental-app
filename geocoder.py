@@ -36,7 +36,7 @@ def get_proximity_score(tenant_area,tenant_city,property_area,property_city):
     lat1,lng1 = get_coordinates(tenant_area,tenant_city)
     lat2,lng2 = get_coordinates(property_area,property_city)
 
-    if lat1 is None or lat2 in None:
+    if lat1 is None or lat2 is None:
         return 5
     
     distance = haversine(lat1,lng1,lat2,lng2)

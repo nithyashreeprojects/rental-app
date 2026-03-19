@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Match — RentMatch{% endblock %}
+
+{% block content %}
+
+<div class="match-wrap">
+
+    <div class="match-header">
+        <div class="match-tag"><span class="dot"></span> Smart Match</div>
+        <h1>Find your perfect home</h1>
+        <p>Answer a few questions and we'll score every property for you</p>
+    </div>
+
+    <form class="match-form" action="/results" method="POST">
+
+        <div class="form-section">
+            <label class="form-label">Which city are you looking in?</label>
+            <select name="city" class="form-input">
+                <option value="Chennai">Chennai</option>
+            </select>
+        </div>
+
+        <div class="form-section">
+            <label class="form-label">Preferred area <span class="form-hint">optional</span></label>
+            <input type="text" name="area" class="form-input" placeholder="e.g. Anna Nagar, Adyar, T Nagar..." />
+        </div>
+
+        <div class="form-section">
+            <label class="form-label">Maximum budget <span class="form-hint">per month</span></label>
+            <div class="budget-wrap">
+                <span class="budget-symbol">₹</span>
+                <input type="number" name="max_budget" class="form-input budget-input" placeholder="e.g. 15000" min="1000" max="100000" />
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label class="form-label">How many bedrooms?</label>
+            <div class="radio-group">
+                <label class="radio-btn">
+                    <input type="radio" name="bedrooms" value="1" checked />
+                    <span>1 BHK</span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="bedrooms" value="2" />
+                    <span>2 BHK</span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="bedrooms" value="3" />
+                    <span>3 BHK</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label class="form-label">Furnishing preference</label>
+            <div class="radio-group">
+                <label class="radio-btn">
+                    <input type="radio" name="furnishing_type" value="unfurnished" checked />
+                    <span>Unfurnished</span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="furnishing_type" value="semi-furnished" />
+                    <span>Semi-furnished</span>
+                </label>
+                <label class="radio-btn">
+                    <input type="radio" name="furnishing_type" value="furnished" />
+                    <span>Furnished</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label class="form-label">What extras do you need?</label>
+            <div class="checkbox-group">
+                <label class="checkbox-btn">
+                    <input type="checkbox" name="has_parking" value="1" />
+                    <span>Parking</span>
+                </label>
+                <label class="checkbox-btn">
+                    <input type="checkbox" name="has_lift" value="1" />
+                    <span>Lift</span>
+                </label>
+                <label class="checkbox-btn">
+                    <input type="checkbox" name="pets_allowed" value="1" />
+                    <span>Pets allowed</span>
+                </label>
+                <label class="checkbox-btn">
+                    <input type="checkbox" name="maintenance_included" value="1" />
+                    <span>Maintenance included</span>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="match-submit">Find my matches →</button>
+
+    </form>
+</div>
+
+{% endblock %}

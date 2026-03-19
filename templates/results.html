@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Your Matches — RentMatch{% endblock %}
+
+{% block content %}
+
+<div class="results-wrap">
+
+    <div class="results-header">
+        <div>
+            <h1>Your matches</h1>
+            <p>{{ matches|length }} properties ranked for you in {{ preferences["city"] }}</p>
+        </div>
+        <a href="/match" class="refine-btn">Refine search</a>
+    </div>
+
+    <div class="results-list">
+        {% for match in matches %}
+        <div class="rcard">
+
+            <div class="rcard-img">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=300&h=200&fit=crop" alt="{{ match.property['title'] }}" />
+                <div class="score-badge {% if match.score >= 70 %}score-high{% elif match.score >= 40 %}score-mid{% else %}score-low{% endif %}">
+                    {{ match.score }}%
+                </div>
+            </div>
+
+            <div class="rcard-body">
+                <div class="rcard-top">
+                    <div>
+                        <div class="rcard-title">{{ match.property['title'] }}</div>
+                        <div class="rcard-area">{{ match.property['area'] }}, {{ match.property['city'] }}</div>
+                    </div>
+                    <div class="rcard-price">
+                        ₹{{ "{:,}".format(match.property['price']) }}
+                        <span>/mo</span>
+                    </div>
+                </div>
+
+                <div class="score-bar-wrap">
+                    <div class="score-bar">
+                        <div class="score-fill {% if match.score >= 70 %}fill-high{% elif match.score >= 40 %}fill-mid{% else %}fill-low{% endif %}"
+                             style="width: {{ match.score }}%">
+                        </div>
+                    </div>
+                    <span class="score-label">{{ match.score }}% match</span>
+                </div>
+
+                <div class="rcard-tags">
+                    <span class="ptag-blue">{{ match.property['bedrooms'] }} BHK</span>
+                    <span class="ptag-amber">{{ match.property['furnishing_type'] }}</span>
+                    {% if match.property['is_gated_community'] %}
+                    <span class="ptag-green">Gated</span>
+                    {% endif %}
+                    {% if match.property['has_parking'] %}
+                    <span class="ptag-gray">Parking</span>
+                    {% endif %}
+                    {% if match.property['has_lift'] %}
+                    <span class="ptag-gray">Lift</span>
+                    {% endif %}
+                </div>
+
+                <div class="rcard-footer">
+                    <span class="pcard-date">Available {{ match.property['available_from'] }}</span>
+                    <a href="/property/{{ match.property['id'] }}" class="pcard-btn">View property</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

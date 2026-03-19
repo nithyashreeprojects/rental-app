@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Listings — RentMatch{% endblock %}
+
+{% block content %}
+
+<div class="listings-hero">
+    <h1>All Properties</h1>
+    <p>{{ properties|length }} properties available in Chennai</p>
+</div>
+
+<div class="listings-grid">
+    {% for p in properties %}
+    <div class="pcard">
+        <div class="pcard-img">
+            <img src="https://plus.unsplash.com/premium_photo-1678963247798-0944cf6ba34d?q=80&w=1339&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="{{ p['title'] }}" />
+        </div>
+        <div class="pcard-header">
+            <div class="pcard-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12L12 4l9 8v8a1 1 0 01-1 1H5a1 1 0 01-1-1v-8z" fill="#3EAFD4" opacity="0.2"/>
+                    <path d="M3 12L12 4l9 8v8a1 1 0 01-1 1H5a1 1 0 01-1-1v-8z" stroke="#3EAFD4" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M9 21V12h6v9" stroke="#3EAFD4" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="pcard-price">₹{{ "{:,}".format(p["price"]) }}<span>/mo</span></div>
+        </div>
+
+        <div class="pcard-title">{{ p["title"] }}</div>
+        <div class="pcard-area">{{ p["area"] }}, {{ p["city"] }}</div>
+
+        <div class="pcard-tags">
+            <span class="ptag-blue">{{ p["bedrooms"] }} BHK</span>
+            <span class="ptag-amber">{{ p["furnishing_type"] }}</span>
+            {% if p["is_gated_community"] %}
+            <span class="ptag-green">Gated</span>
+            {% endif %}
+            {% if p["has_parking"] %}
+            <span class="ptag-gray">Parking</span>
+            {% endif %}
+            {% if p["has_lift"] %}
+            <span class="ptag-gray">Lift</span>
+            {% endif %}
+            {% if p["pets_allowed"] %}
+            <span class="ptag-green">Pets ok</span>
+            {% endif %}
+        </div>
+
+        <div class="pcard-footer">
+            <span class="pcard-date">Available {{ p["available_from"] }}</span>
+            <a href="/property/{{ p['id'] }}" class="pcard-btn">View</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
