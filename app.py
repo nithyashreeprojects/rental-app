@@ -50,5 +50,6 @@ def results():
     matches=get_matches(properties,preferences)
     return render_template('results.html',matches=matches,preferences=preferences)
 
-port = int(os.environ.get("PORT",5001))
-app.run(host="0.0.0.0",port=5001,debug=True)
+if __name__=='__main__':
+    port=int(os.environ.get("PORT",5001))
+    app.run(host="0.0.0.0",port=port,debug=False)
