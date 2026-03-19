@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RentMatch{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">Rent<span>Match</span></a>
+        <div class="nav-links">
+            <a href="/">Listings</a>
+            <a href="/match">Smart Match</a>
+            <button class="nav-btn">Find a home</button>
+            <div class="theme-wrapper">
+                <button class="theme-btn" id="themeBtn" onclick="toggleDropdown()">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <div class="dropdown" id="dropdown">
+                    <div class="dropdown-item" onclick="setTheme('dark')">
+                        🌙 Dark <span class="ddot" id="dot-dark"></span>
+                    </div>
+                    <div class="dropdown-item" onclick="setTheme('light')">
+                        ☀️ Light <span class="ddot" id="dot-light"></span>
+                    </div>
+                    <div class="dropdown-item" onclick="setTheme('system')">
+                        💻 System <span class="ddot" id="dot-system"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <span class="footer-logo">Rent<span>Match</span></span>
+        <span class="footer-text">Built for Chennai renters · 2026</span>
+    </footer>
+
+    <script>
+        document.getElementById('dot-dark').style.display = 'inline-block';
+
+        function toggleDropdown() {
+            document.getElementById('dropdown').classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#themeBtn') && !e.target.closest('#dropdown')) {
+                document.getElementById('dropdown').classList.remove('open');
+            }
+        });
+
+        function setTheme(theme) {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            ['dark','light','system'].forEach(t => {
+                document.getElementById('dot-' + t).style.display = 'none';
+            });
+            document.getElementById('dot-' + theme).style.display = 'inline-block';
+
+            if (theme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                icon.textContent = '🌙';
+            } else if (theme === 'light') {
+                html.setAttribute('data-theme', 'light');
+                icon.textContent = '☀️';
+            } else {
+                const sys = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                html.setAttribute('data-theme', sys ? 'dark' : 'light');
+                icon.textContent = sys ? '🌙' : '☀️';
+            }
+            document.getElementById('dropdown').classList.remove('open');
+        }
+    </script>
+
+</body>
+</html>

@@ -1,10 +1,97 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>RentEasy</title>
-    </head>
-    <body>
-        <h1>Welcome to RentEasy, {{username}}!</h1>
-        <p>Find your perfect home.</p>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}RentMatch — Find your perfect home{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+    <div class="glow"></div>
+    <div class="glow2"></div>
+    <div class="glow3"></div>
+
+    <div class="hero-tag">
+        <span class="dot"></span> Chennai's smartest rental platform
+    </div>
+
+    <h1>Find a home that<br><span class="grad">matches you perfectly</span></h1>
+    <p>Scored rentals across Chennai — ranked by your exact preferences</p>
+
+    <div class="search-wrap">
+        <input type="text" placeholder="Search by area — Anna Nagar, Adyar, Velachery..." />
+        <button class="search-btn">Search</button>
+    </div>
+
+    <div class="popular">
+        <span>Popular:</span>
+        <span class="ptag">Anna Nagar</span>
+        <span class="ptag">Adyar</span>
+        <span class="ptag">T Nagar</span>
+        <span class="ptag">Velachery</span>
+        <span class="ptag">Mylapore</span>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Properties listed</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Neighbourhoods</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Chennai verified</div>
+    </div>
+</div>
+
+<div class="features">
+    <h2>Why RentMatch?</h2>
+    <p class="features-sub">Everything you need to find the right home, faster</p>
+    <div class="feature-grid">
+        <div class="fcard" style="--fline:#3EAFD4;">
+            <div class="ficon-wrap" style="background:rgba(62,175,212,0.12);">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" fill="#3EAFD4" opacity="0.2"/>
+                    <path d="M8 12l3 3 5-5" stroke="#3EAFD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="ftitle">Smart Match</div>
+            <div class="fdesc">Properties scored out of 100 based on your exact preferences</div>
+        </div>
+        <div class="fcard" style="--fline:#A4C4D4;">
+            <div class="ficon-wrap" style="background:rgba(164,196,212,0.15);">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="10" r="3" fill="#A4C4D4"/>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#A4C4D4" opacity="0.2"/>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#A4C4D4" stroke-width="1.5" fill="none"/>
+                </svg>
+            </div>
+            <div class="ftitle">Real proximity</div>
+            <div class="fdesc">Distance via real GPS coordinates — not guesswork</div>
+        </div>
+        <div class="fcard" style="--fline:#E8A84C;">
+            <div class="ficon-wrap" style="background:rgba(232,168,76,0.12);">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12L12 4l9 8v8a1 1 0 01-1 1H5a1 1 0 01-1-1v-8z" fill="#E8A84C" opacity="0.2"/>
+                    <path d="M3 12L12 4l9 8v8a1 1 0 01-1 1H5a1 1 0 01-1-1v-8z" stroke="#E8A84C" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M9 21V12h6v9" stroke="#E8A84C" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="ftitle">Chennai focused</div>
+            <div class="fdesc">Built specifically for Chennai renters who know what they want</div>
+        </div>
+    </div>
+</div>
+
+<div class="cta">
+    <div class="cta-glow-left"></div>
+    <div class="cta-glow-right"></div>
+    <h2>Not sure where to start?</h2>
+    <p>Answer 5 quick questions and we'll rank every property for you</p>
+    <a href="/match"><button class="cta-btn">Try Smart Match</button></a>
+    <p class="cta-note">No sign up required — takes under 2 minutes</p>
+</div>
+
+{% endblock %}
